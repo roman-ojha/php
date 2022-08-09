@@ -35,11 +35,11 @@
         )
     */
 
-    $arrayKyeFirst=array_key_first($user);
-    echo $arrayKyeFirst."<br/>";
+    $arrayKeyFirst=array_key_first($user);
+    echo $arrayKeyFirst."<br/>";
 
-    $arrayKyeLast=array_key_last($user);
-    echo $arrayKyeLast."<br/>";
+    $arrayKeyLast=array_key_last($user);
+    echo $arrayKeyLast."<br/>";
 
     $arrayKeyExist=array_key_exists("name", $user);
     // return 1
