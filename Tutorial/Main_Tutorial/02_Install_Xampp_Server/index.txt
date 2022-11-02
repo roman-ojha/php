@@ -1,0 +1,25 @@
+*) Setup:
+    -> install :
+        -> PHP
+        -> MySQL
+        -> Apache Server
+    -> we can install these thing differently but we will rather install Xampp server which will help us to install 'php', 'MySQL', 'Apache Server'
+    -> most popular option are:
+        -> Wamp(Windows + Apache + MySQL + PHP) server
+        -> Xampp(Apache + MariaDB + PHP + Perl) server
+    -> https://www.apachefriends.org/index.html
+
+*) Run:
+    -> Run Xampp control
+    -> start Apache
+    -> start MySQL 
+    -> now you have to write you project and your php file into given path folder:
+        -> C:\xampp\htdocs
+    -> 'htdocs' folder will contain all the files related to php program or project
+    -> so, we will start this tutorial by putting this whole folder inside 'htdocs' folder
+    -> now here we can create php file
+
+*) Access Xampp:
+    -> http://localhost/dashboard/
+    => Open PHP file:
+        -> http://localhost/<project_folder_name_inside_'htdocs'>
