@@ -1,0 +1,20 @@
+*) Client Side Script:
+    -> server response HTML, CSS, Javascript on client
+    -> EX:
+        -> VB Script
+        -> Javascript
+*) Server Side Script:
+    -> it run on server and response HTML to browser
+    -> EX:
+        -> PHP
+        -> .Net
+        -> Python
+        -> Go
+
+*) PHP:
+    -> Php (PHP: Hypertext Preprocessor)
+    -> Create Dynamic website with database
+    -> to create Web based software applications
+    -> Object oriented programming
+    -> Cross-platform compatibility
+    -> Works with all servers Apache, IIS etc.
