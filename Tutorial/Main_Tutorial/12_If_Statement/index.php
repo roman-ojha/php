@@ -1,6 +1,6 @@
 <?php
     /*
-        if(condition){
+        if(<condition>){
             // statement
         }
     */
