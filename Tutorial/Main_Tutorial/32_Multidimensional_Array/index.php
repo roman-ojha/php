@@ -49,6 +49,7 @@
         "math"=>67,
        ], 
     ];
+
     foreach($marks as $name=> $marks){
         echo "<h1>$name : </h1><br/>";
         foreach($marks as $subject => $mark){
