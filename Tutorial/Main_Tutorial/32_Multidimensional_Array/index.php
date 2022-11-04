@@ -30,4 +30,31 @@
         [2,"Hari","Salesman",300000],
         [3,"Jack","Driver",200000],
     ];
+
+    // Multidimensional Associative array:
+    $marks=[
+       "Krishna"=>[
+        "physic"=>85,
+        "chemistry"=>89,
+        "math"=>78,
+       ], 
+       "Harry"=>[
+        "physic"=>68,
+        "chemistry"=>79,
+        "math"=>73,
+       ], 
+       "Jack"=>[
+        "physic"=>62,
+        "chemistry"=>92,
+        "math"=>67,
+       ], 
+    ];
+    foreach($marks as $name=> $marks){
+        echo "<h1>$name : </h1><br/>";
+        foreach($marks as $subject => $mark){
+            echo "$subject : $mark <br/>";
+        }
+        echo "<br/>";
+    }
+
 ?>
