@@ -6,13 +6,6 @@
     $arr1=["ROMAN","RAZZ"];
     // echo $arr1[1];
 
-    // key=>value
-    $arr2=array(
-        "name"=>"ROMAN",
-        "gender"=>"male",
-    );
-    echo $arr2["name"];
-
     // another way to print array for testing purposes
     echo "<pre>";
     print_r($arr0);
