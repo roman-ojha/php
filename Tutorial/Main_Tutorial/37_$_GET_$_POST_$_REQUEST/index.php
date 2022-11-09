@@ -28,9 +28,9 @@
 </head>
 <body>  
     <!-- now after use submit the data we have to perform some action for now we will going to put the php file name where we want the data to get accessed -->
-    <!-- Method 'GET' -->
+    <!-- Method 'GET' & '$_GET' Variable-->
     <h1> GET Method </h1>
-    <form action="get_data.php" method="GET">
+    <form action="get_variable.php" method="GET">
         <!-- now after use submit the data all the data that use enter will get into 'data.php' file -->
         Name: <input type="text" name="fname"/><br/>
         Age: <input type="number" name="age"/><br/>
@@ -40,9 +40,16 @@
         -->
     </form> 
 
-    <!-- Method 'POST' -->
+    <!-- Method 'POST' & '$_POST' Variable -->
     <h1> POST Method </h1>
-    <form action="post_data.php" method="POST">
+    <form action="post_variable.php" method="POST">
+        Name: <input type="text" name="fname"/><br/>
+        Age: <input type="number" name="age"/><br/>
+        <input type="submit" name="save"/>
+    </form> 
+
+    <h1> $_REQUEST Variable </h1>
+    <form action="request_variable.php" method="POST">
         Name: <input type="text" name="fname"/><br/>
         Age: <input type="number" name="age"/><br/>
         <input type="submit" name="save"/>
