@@ -30,7 +30,12 @@
     $cookie_value="Roman";
 
     // setting cookie
-    setcookie($cookie_name, $cookie_value, time()+(86400), '/');
+    setcookie($cookie_name, $cookie_value, time() + (86400), '/');
+
+
+    // NOTE: we will delete the cookie name 'User' whenever we will go to 'delete_cookie.php' page
+
+    // IMPORTANT NOTE: https://youtu.be/QfKFijweO64?list=PL0b6OzIxLPbyrzCMJOFzLnf_-_5E_dkzs&t=915
 
     ?>
 
