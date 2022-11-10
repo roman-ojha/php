@@ -2,27 +2,45 @@
 include 'header.php';
 
 /*
-    => when we want to work with PHP and MySQL then first we have to follow these three steps:
-        -> Step 1: Create connection between PHP and MySQL
-        -> Step 2: After connection get successful we will run SQL Query
-        -> Step 3: Close connection
+    *) Introduction:
+        => when we want to work with PHP and MySQL then first we have to follow these three steps:
+            -> Step 1: Create connection between PHP and MySQL
+            -> Step 2: After connection get successful we will run SQL Query
+            -> Step 3: Close connection
 
-    => To work with PHP and MySQL we have three different kind of methods:
-        1. MySQLi Procedural
-            -> all bellow function will come under it
-            -> mysqli_connect()
-            -> mysqli_query()
-            -> mysqli_close()
-        2. MySQLi Object-oriented
-            -> we will learn about this on OOPs with PHP tutorial
-        3. PDO
-            -> most secure methods then above 2 types of methods
-*/
+        => To work with PHP and MySQL we have three different kind of methods:
+            1. MySQLi Procedural
+                -> all bellow function will come under it
+                -> mysqli_connect()
+                -> mysqli_query()
+                -> mysqli_close()
+            2. MySQLi Object-oriented
+                -> we will learn about this on OOPs with PHP tutorial
+            3. PDO
+                -> most secure methods then above 2 types of methods
 
-
-/*
-    => For this project we will going to download already created html template from :
-        -> https://www.yahoobaba.net/project/html-crud
+    *) Setup:
+        => For this project we will going to download already created html template from :
+            -> https://www.yahoobaba.net/project/html-crud
+        => now we will start MySQL server
+        -> now create database 'php_MySQL_tutorial'
+        -> and create table name 'students':
+            -> create table students(
+                sid INT NOT NULL AUTO_INCREMENT,
+                sname VARCHAR(30) NOT NULL,
+                saddress VARCHAR(100) NOT NULL,
+                sclass INT NOT NULL,
+                sphone VARCHAR(10) NOT NULL,
+                PRIMARY KEY (sid)
+            )
+            -> create table students_class(
+                cid INT NOT NULL AUTO_INCREMENT,
+                cname VARCHAR(15) NOT NULL,
+                PRIMARY KEY (cid)
+            )
+        -> insert some value:
+                -> INSERT INTO `students_class` (`cid`, `cname`) VALUES (NULL, 'BCA'), (NULL, 'Btech'), (NULL, 'Bsc'), (NULL, 'Bcom');
+                -> INSERT INTO `students` (`sid`, `sname`, `saddress`, `sclass`, `sphone`) VALUES (NULL, 'Roman', 'nepal', '3', '9832143212'), (NULL, 'Razz', 'kathmandu', '2', '9864323454');
 */
 
 // Step 1: Create connection
