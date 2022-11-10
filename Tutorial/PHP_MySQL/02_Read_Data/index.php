@@ -18,6 +18,12 @@ include 'header.php';
 $sql = "SELECT * FROM students JOIN students_class WHERE students.sclass = students_class.cid";
 $students = mysqli_query($conn, $sql) or die("Query Unsuccessful");
 
+// to read data we can use 'mysqli_fetch_assoc()' function
+// first call will get first returned students
+// second call will get second returned students result
+// print_r(mysqli_fetch_assoc($students));
+// print_r(mysqli_fetch_assoc($students));
+
 // we will check how many rows we get from sql query
 if (mysqli_num_rows($students)>0) {
     // if row getter then 0
