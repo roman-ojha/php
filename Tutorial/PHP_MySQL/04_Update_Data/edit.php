@@ -18,9 +18,10 @@ if (mysqli_num_rows($students)>0) {
     $student=mysqli_fetch_assoc($students);
     ?>
     <form class="post-form" action="updatedata.php" method="post">
+        <!-- we will pass the updated data to 'updatedata.php' file and update to database -->
       <div class="form-group">
           <label>Name</label>
-          <input type="hidden" name="sid" value=""/>
+          <input type="hidden" name="sid" value="<?php echo $student['sid']; ?>"/>
           <input type="text" name="sname" value="<?php echo $student['sname']; ?>"/>
       </div>
       <div class="form-group">

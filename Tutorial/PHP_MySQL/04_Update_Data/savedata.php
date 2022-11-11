@@ -5,7 +5,6 @@
     $s_class=$_POST['class'];
     $s_phone=$_POST['sphone'];
 
-    echo $s_class;
 
     $conn = mysqli_connect("localhost", "root", "", "php_mysql_tutorial") or die("database connection failed");
 
