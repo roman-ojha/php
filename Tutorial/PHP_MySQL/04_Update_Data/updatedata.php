@@ -1,5 +1,7 @@
 <?php
 
+// updating data after we get the information about student using POST method
+
 $s_id=$_POST['sid'];
 $s_name= $_POST['sname'];
 $s_address=$_POST['saddress'];
