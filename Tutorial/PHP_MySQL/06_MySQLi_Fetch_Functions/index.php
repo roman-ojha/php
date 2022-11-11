@@ -3,12 +3,16 @@
     /*
         *) MySQLi Fetch Functions:
             1. mysqli_fetch_assoc()
-                -> return associative array
+                -> return single field associative array
             2. mysqli_fetch_array()
-                ->
+                -> return single field both index & associative array
             3. mysqli_fetch_row()
+                -> return single field index array
             4. mysqli_fetch_all()
+                -> return all queried field multidimensional array
             5. mysqli_fetch_field()
+                -> return stdClass Object containing information about column
+                -> NOTE: this will now return array
     */
 
     // database connection
@@ -105,3 +109,80 @@
 
     $array = mysqli_fetch_array($response, MYSQLI_BOTH);
     // 'MYSQLI_BOTH': this will now return both associative and index array
+
+    // ========================================================
+    $response=mysqli_query($conn, $sql) or die("Query failed");
+    // mysqli_fetch_all(): this will fetch all the possible result as multidimensional array
+    // by default will return index array
+    $students = mysqli_fetch_all($response, MYSQLI_ASSOC);
+    echo "<pre><h1>";
+    print_r($students);
+    echo "</h1></pre>";
+    /*
+        Output:
+        Array
+        (
+            [0] => Array
+                (
+                    [0] => 10
+                    [1] => Roman Ojha
+                    [2] => New Baneshwor
+                    [3] => 2
+                    [4] => 9843211234
+                )
+
+            [1] => Array
+                (
+                    [0] => 11
+                    [1] => Razz
+                    [2] => nepal
+                    [3] => 3
+                    [4] => 898743212
+                )
+
+        )
+    */
+    // access fetched data
+    foreach ($students as $student) {
+        echo "<pre><h1>";
+        print_r($student);
+        echo "</h1></pre>";
+    }
+
+    // =======================================================
+    $response=mysqli_query($conn, $sql) or die("Query failed");
+    // 'mysqli_fetch_field()' : fetch information about the column
+    // return stdClass Object containing information about column
+    // NOTE: this will now return array
+    $field = mysqli_fetch_field($response);
+    // this will return the information about the first column
+    echo "<pre><h1>";
+    print_r($field);
+    echo "</h1></pre>";
+    /*
+        Output:
+        stdClass Object
+        (
+            [name] => sid
+            [orgname] => sid
+            [table] => students
+            [orgtable] => students
+            [def] =>
+            [db] => php_mysql_tutorial
+            [catalog] => def
+            [max_length] => 0
+            [length] => 10
+            [charsetnr] => 63
+            [flags] => 49667
+            [type] => 3
+            [decimals] => 0
+        )
+    */
+
+    // get all the column information
+    while ($field=mysqli_fetch_field($response)) {
+        // now while accessing these field value we can't be able we use [''] to access value
+        // because 'mysqli_fetch_field()' doesn't return array, but return object
+        // so we have to use -> key to access value
+        echo "<h1> $field->name </h1>";
+    }
