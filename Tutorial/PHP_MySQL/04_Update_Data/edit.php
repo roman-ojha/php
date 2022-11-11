@@ -29,11 +29,25 @@ if (mysqli_num_rows($students)>0) {
       </div>
       <div class="form-group">
           <label>Class</label>
+          <?php
+          // getting Student Classes for select option
+    $get_class_sql = "SELECT * FROM students_class";
+    $classes = mysqli_query($conn, $get_class_sql) or die("Query Unsuccessful");
+    ?>
           <select name="sclass" value="3" >
-              <option value="" selected disabled>Select Class</option>
-              <option value="1">BCA</option>
-              <option value="2">BSC</option>
-              <option value="3">B.TECH</option>
+              <option value="" disabled>Select Class</option>
+              <?php
+      if (mysqli_num_rows($classes)>0) {
+          while ($class=mysqli_fetch_assoc($classes)) {
+              ?>
+              <option <?php if ($class['cid']==$student['sclass']) {
+                  // we will select that class option that student is in
+                  echo 'selected';
+              } ?> value="<?php echo $class['cid'] ?>"><?php echo $class['cname'] ?></option>
+              <?php
+          }
+      }
+    ?>
           </select>
       </div>
       <div class="form-group">
