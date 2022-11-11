@@ -3,22 +3,17 @@
 <div id="main-content">
     <h2>Update Record</h2>
     <?php
-    // getting the id of the student to get information from the database
         $sid=$_GET['id'];
 
-// creating Database connection
 $conn = mysqli_connect("localhost", "root", "", "php_mysql_tutorial") or die("database connection failed");
 
-// Query to get student with sid
 $get_students_sql = "SELECT * FROM students WHERE sid = {$sid}";
 $students = mysqli_query($conn, $get_students_sql) or die("Query Unsuccessful");
 
 if (mysqli_num_rows($students)>0) {
-    // now we will get the first index information from list of student array
     $student=mysqli_fetch_assoc($students);
     ?>
     <form class="post-form" action="updatedata.php" method="post">
-        <!-- we will pass the updated data to 'updatedata.php' file and update to database -->
       <div class="form-group">
           <label>Name</label>
           <input type="hidden" name="sid" value="<?php echo $student['sid']; ?>"/>
@@ -31,7 +26,6 @@ if (mysqli_num_rows($students)>0) {
       <div class="form-group">
           <label>Class</label>
           <?php
-          // getting Student Classes for select option
     $get_class_sql = "SELECT * FROM students_class";
     $classes = mysqli_query($conn, $get_class_sql) or die("Query Unsuccessful");
     ?>
@@ -42,7 +36,6 @@ if (mysqli_num_rows($students)>0) {
           while ($class=mysqli_fetch_assoc($classes)) {
               ?>
               <option <?php if ($class['cid']==$student['sclass']) {
-                  // we will select that class option that student is in
                   echo 'selected';
               } ?> value="<?php echo $class['cid'] ?>"><?php echo $class['cname'] ?></option>
               <?php
