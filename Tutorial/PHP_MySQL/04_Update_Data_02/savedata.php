@@ -11,6 +11,6 @@
     $insert_sql="INSERT INTO students(sname,saddress,sclass,sphone) VALUES('{$s_name}','{$s_address}','{$s_class}','{$s_phone}')";
     $response=mysqli_query($conn, $insert_sql) or die("Query Unsuccessful");
 
-    header("Location: http://localhost/php/Tutorial/PHP_MySQL/03_Create_Data/");
+    header("Location: http://localhost/php/Tutorial/PHP_MySQL/04_Update_Data_02/");
 
     mysqli_close($conn);
