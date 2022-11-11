@@ -34,7 +34,8 @@ if (mysqli_num_rows($students)>0) {
                 <td><?php echo $student['cname'] ?></td>
                 <td><?php echo $student['sphone'] ?></td>
                 <td>
-                    <a href='edit.php'>Edit</a>
+                    <!-- to be able to edit the user after clicking this link first we have to show user information on that 'edit.php' page for that we have to pass the student id on link -->
+                    <a href='edit.php?id=<?php echo $student['sid'] ?>'>Edit</a>
                     <a href='delete-inline.php'>Delete</a>
                 </td>
             </tr>

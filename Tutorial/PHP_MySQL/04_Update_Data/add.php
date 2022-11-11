@@ -2,7 +2,6 @@
 
 $conn = mysqli_connect("localhost", "root", "", "php_mysql_tutorial") or die("database connection failed");
 
-// getting all the classes from 'students_class' database
 $classes=mysqli_query($conn, "SELECT * FROM students_class");
 
 
@@ -13,7 +12,6 @@ $classes=mysqli_query($conn, "SELECT * FROM students_class");
     if (mysqli_num_rows($classes)>0) {
         ?>
     <form class="post-form" action="savedata.php" method="post">
-        <!-- we will save the form data into database in 'savedata.php' file -->
         <div class="form-group">
             <label>Name</label>
             <input type="text" name="sname" />
@@ -28,7 +26,6 @@ $classes=mysqli_query($conn, "SELECT * FROM students_class");
                 <option value="" selected disabled>Select Class</option>
                 <?php
                 while ($class=mysqli_fetch_assoc($classes)) {
-                    // fetched class from the 'students_class' database
                     ?>
                 <option value="<?php echo $class['cid'];?>"><?php echo $class['cname']; ?></option>
                 <?php } ?>
