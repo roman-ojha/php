@@ -6,7 +6,7 @@
     $s_phone=$_POST['sphone'];
 
 
-    $conn = mysqli_connect("localhost", "root", "", "php_mysql_tutorial") or die("database connection failed");
+    include './config.php';
 
     $insert_sql="INSERT INTO students(sname,saddress,sclass,sphone) VALUES('{$s_name}','{$s_address}','{$s_class}','{$s_phone}')";
     $response=mysqli_query($conn, $insert_sql) or die("Query Unsuccessful");

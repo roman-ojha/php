@@ -1,6 +1,6 @@
 <?php include 'header.php';
 
-$conn = mysqli_connect("localhost", "root", "", "php_mysql_tutorial") or die("database connection failed");
+include './config.php';
 
 $classes=mysqli_query($conn, "SELECT * FROM students_class");
 

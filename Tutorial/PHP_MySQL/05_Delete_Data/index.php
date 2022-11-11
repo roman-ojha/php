@@ -6,7 +6,7 @@ include 'header.php';
 <div id="main-content">
     <h2>All Records</h2>
     <?php
-        $conn = mysqli_connect("localhost", "root", "", "php_mysql_tutorial") or die("database connection failed");
+    include './config.php';
 
 
 $sql = "SELECT * FROM students JOIN students_class WHERE students.sclass = students_class.cid";
@@ -35,7 +35,8 @@ if (mysqli_num_rows($students)>0) {
                 <td><?php echo $student['sphone'] ?></td>
                 <td>
                     <a href='edit.php?id=<?php echo $student['sid'] ?>'>Edit</a>
-                    <a href='delete-inline.php'>Delete</a>
+                    <!-- to be able to delete the student after clicking this link first we have to get sid on that 'delete-inline.php' page for that we have to pass the student id on link -->
+                    <a href='delete-inline.php?id=<?php echo $student['sid'] ?>'>Delete</a>
                 </td>
             </tr>
             <?php }?>

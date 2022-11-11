@@ -1,16 +1,12 @@
 <?php include 'header.php';
-// here first we will get the student information using id
-// and that we will show that information value into form
-// then we will given the user to update that information
 
-$conn = mysqli_connect("localhost", "root", "", "php_mysql_tutorial") or die("database connection failed");
+include './config.php';
 
 ?>
 <div id="main-content">
     <h2>Edit Record</h2>
     <form class="post-form" action="<?php
     $_SERVER['PHP_SELF'];
-// we will get the student information in same file
 ?>" method="post">
         <div class="form-group">
             <label>Id</label>
@@ -20,20 +16,14 @@ $conn = mysqli_connect("localhost", "root", "", "php_mysql_tutorial") or die("da
     </form>
 
     <?php
-        // first we will check does 'showbtn' submit button is been clicked or not
         if (isset($_POST['showbtn'])) {
-            // now here we will get the 'sid' from input form
             $sid=$_POST['sid'];
 
-            // now we will query it to get the student information
             $get_students_sql = "SELECT * FROM students WHERE sid = {$sid}";
             $students = mysqli_query($conn, $get_students_sql) or die("Query Unsuccessful");
-            // print_r(mysqli_fetch_assoc($students));
             if (mysqli_num_rows($students)>0) {
-                // so if student exist then
                 $student=mysqli_fetch_assoc($students);
                 ?>
-                <!-- we will show the update form after we get the sid from the user -->
     <form class="post-form" action="updatedata.php" method="post">
         <div class="form-group">
             <label for="">Name</label>
@@ -76,6 +66,7 @@ $conn = mysqli_connect("localhost", "root", "", "php_mysql_tutorial") or die("da
                 echo "<h1>Student Does not exist</h1>";
             }
         }
+mysqli_close($conn);
 ?>
 </div>
 </div>

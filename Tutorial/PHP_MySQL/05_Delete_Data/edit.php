@@ -5,7 +5,7 @@
     <?php
         $sid=$_GET['id'];
 
-$conn = mysqli_connect("localhost", "root", "", "php_mysql_tutorial") or die("database connection failed");
+include './config.php';
 
 $get_students_sql = "SELECT * FROM students WHERE sid = {$sid}";
 $students = mysqli_query($conn, $get_students_sql) or die("Query Unsuccessful");
@@ -54,6 +54,7 @@ if (mysqli_num_rows($students)>0) {
 } else {
     echo "<h1>Student Not Found</h1>";
 }
+mysqli_close($conn);
 ?>
 </div>
 </div>
