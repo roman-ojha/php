@@ -35,4 +35,4 @@
     }
 
     $b = new B("Roman");
-    $b->show(10);
+    $b->echo(10);
