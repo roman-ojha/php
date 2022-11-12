@@ -6,7 +6,7 @@
     */
 
     // creating trait
-    trait hello
+    trait Hello
     {
         // now we can use this function multiple times inside classes
         public function sayHello()
@@ -20,7 +20,7 @@
         }
     }
 
-    trait bye
+    trait Bye
     {
         // now we can use this function multiple times inside classes
         public function sayBye()
@@ -32,15 +32,15 @@
     trait Greeting
     {
         // using other traits inside trait
-        use hello;
-        use bye;
+        use Hello;
+        use Bye;
     }
 
     class A
     {
         // using trait inside class
-        use hello;
-        use bye;
+        use Hello;
+        use Bye;
         // added multiple traits inside one class
 
         public function say()
@@ -53,7 +53,7 @@
 
     class B
     {
-        use hello;
+        use Hello;
     }
 
     class C
