@@ -11,6 +11,16 @@
                 4. can't be able to access normal member variable from static member function
     */
 
+
+    // Static Class
+    class StaticClass
+    {
+        public static $a;
+        public static function func()
+        {
+        }
+    }
+
     class Base
     {
         // static member variable
