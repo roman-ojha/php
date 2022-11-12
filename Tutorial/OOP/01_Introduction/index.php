@@ -23,7 +23,7 @@
                 1. Properties
                 2. Methods
         *) Object:
-            ->
+            -> instance of Class
     */
 
     // Creating Class
