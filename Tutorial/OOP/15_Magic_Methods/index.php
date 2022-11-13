@@ -15,7 +15,7 @@
                 04. __set()
                 05. __isset()
                 06. __unset()
-                07. __autoload()
+                07. __autoload() : deprecated so will use 'spl_autoload_register'
                 08. __clone()
                 09. __sleep()
                 10. __wakeup()
