@@ -4,6 +4,7 @@
         *) Magic Methods
             -> it automatically get called based on condition
             -> for that we don't have to create object of that class
+            -> magic method will get called when some conditional event occur
             -> they starts with prefix(__)function_name
             -> ex:
                  -> '__construct()' is also the magic method
