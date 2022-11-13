@@ -41,8 +41,8 @@
     $student->setName("Roman", "Ojha");
 
     // serializing 'Student' object into array
-    $stObjToArr =  serialize($student);
-    echo $stObjToArr;
+    $stObjToStr =  serialize($student);
+    echo $stObjToStr;
     /*
         By default it will return:
             O:7:"Student":3:{s:6:"course";s:3:"PHP";s:19:"Studentfirst_name";s:5:"Roman";s:18:"Studentlast_name";s:4:"Ojha";}
