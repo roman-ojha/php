@@ -17,14 +17,26 @@
                         -> return all public variable name of the given object instance if called from outside the class
                         -> return all public, private and protected variable name of the given object instance in called from inside the class
                 06. get_called_class
+                        -> return for which class the function is being called
                 07. get_declared_classes
+                        -> return all the classes that is available of that scope
                 08. get_declared_interfaces
+                        -> return all the interfaces that is declared in that scope
                 09. get_declared_traits
+                        -> return all the traits that is declared in that scope
                 10. class_alias
+                        -> this allow us to create another name of the existing class
     */
 
     class ParentClass
     {
+        public static function test()
+        {
+            // get_called_class():
+            // return for which class the function is being called
+            var_dump(get_called_class());
+            echo "</br>";
+        }
     }
 
     class MyClass extends ParentClass
@@ -137,5 +149,92 @@
     // return all public, private and protected variables
     print_r($myClass->returnAllObjVars());
     echo "</pre>";
+    /*
+    Output:
+        Array
+        (
+            [name] => Roman
+        )
+        Array
+        (
+            [name] => Roman
+            [course] => PHP
+        )
+    */
 
-    //
+
+    // for 'get_called_class()':
+    ParentClass::test();
+    MyClass::test();
+    /*
+    Output:
+        string(11) "ParentClass"
+        string(7) "MyClass"
+    */
+
+    // get_declared_classes():
+    echo "<pre>";
+    print_r(get_declared_classes());
+    echo "</pre>";
+    /*
+    Output:
+        Array
+        (
+            [0] => stdClass
+            [1] => InternalIterator
+            [2] => Exception
+            [3] => ErrorException
+            [4] => Error
+            ..........
+            [161] => ParentClass
+            [162] => MyClass
+        )
+    */
+
+    // get_declared_classes():
+    echo "<pre>";
+    print_r(get_declared_classes());
+    echo "</pre>";
+
+
+    // get_declared_interfaces():
+    interface ABC
+    {
+    }
+    echo "<pre>";
+    print_r(get_declared_interfaces());
+    echo "</pre>";
+    /*
+    Output:
+        Array
+        (
+            [0] => Traversable
+            [1] => IteratorAggregate
+            [2] => Iterator
+            [3] => Serializable
+            [4] => ArrayAccess
+            .........
+            [23] => ABC
+        )
+    */
+
+    // get_declared_traits():
+    trait MyTrait
+    {
+    }
+    echo "<pre>";
+    print_r(get_declared_traits());
+    echo "</pre>";
+    /*
+    Output:
+        Array
+        (
+            [0] => MyTrait
+        )
+    */
+
+    // class_alias(<original_class_name>,<another_class_name>):
+    class_alias('MyClass', 'Mc');
+    // now create the class with 'Mc'
+    $mc = new Mc();
+    echo $mc->name;
