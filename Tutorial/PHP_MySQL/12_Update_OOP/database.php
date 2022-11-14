@@ -4,22 +4,18 @@
 
     class Database
     {
-        private $db_host;
-        private $db_user;
-        private $db_password;
-        private $db_name;
+        private $db_host = 'localhost';
+        private $db_user = 'root';
+        private $db_password = '';
+        private $db_name = 'php_mysql_tutorial';
 
         private $conn = false;
         private ?mysqli $mysqli = null;
         private $result = array();
 
 
-        public function __construct($host, $user, $password, $name)
+        public function __construct()
         {
-            $this->db_host = $host;
-            $this->db_user = $user;
-            $this->db_password = $password;
-            $this->db_name = $name;
             if (!$this->conn) {
                 $this->mysqli = new mysqli($this->db_host, $this->db_user, $this->db_password, $this->db_name);
                 if ($this->mysqli->connect_error) {

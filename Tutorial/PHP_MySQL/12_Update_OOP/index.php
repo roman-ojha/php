@@ -1,6 +1,7 @@
 <?php
 
-    include './dbConfig.php';
+    include './database.php';
+    $db = new Database();
     // here now we will get '$db' object from which we will perform CURD operation
 
     // Insert Data
