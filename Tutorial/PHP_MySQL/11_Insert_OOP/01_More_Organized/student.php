@@ -3,16 +3,16 @@
     class Student
     {
         // public $sid;
-        public $name;
-        public $address;
-        public $class;
-        public $phone;
+        public $sname;
+        public $saddress;
+        public $sclass;
+        public $sphone;
 
         public function __construct($name, $address, $class, $phone)
         {
-            $this->name = $name;
-            $this->address = $address;
-            $this->class = $class;
-            $this->phone = $phone;
+            $this->sname = $name;
+            $this->saddress = $address;
+            $this->sclass = $class;
+            $this->sphone = $phone;
         }
     }

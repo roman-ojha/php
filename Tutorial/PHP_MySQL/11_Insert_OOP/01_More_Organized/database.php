@@ -39,37 +39,40 @@
         }
 
         // Function to insert into the database
-        public function insert(string $table, Student $params)
+        public function insert(string $table, object $params)
         {
             // we will take as parameter:
             // 1. table name
             // 2. value as array
 
+            // now we will convert the into array where we will get property and and it's value
+            $paramsArray = get_object_vars($params);
+
             // doest table exist that user send
             if ($this->isTableExist($table)) {
                 // if exist then we will insert that into database
 
-                // first we will extract all the table column name from $params and convert into string
-                // $table_columns = implode(',', array_keys($params));
+                // first we will extract all the table column name from $paramsArray and convert into string
+                $table_columns = implode(',', array_keys($paramsArray));
 
-                // and then we will extract all the table column value from $params
-                // $table_values = implode("','", $params);
+                // and then we will extract all the table column value from $paramsArray
+                $table_values = implode("','", $paramsArray);
 
-                // $sql = "INSERT INTO $table ($table_columns) VALUES ('$table_values')";
-                // Ex: INSERT INTO students (sname,saddress,sclass,sphone) VALUE ('Thor','LA','1','9878332212')
+                $sql = "INSERT INTO $table ($table_columns) VALUES ('$table_values')";
+            // Ex: INSERT INTO students (sname,saddress,sclass,sphone) VALUE ('Thor','LA','1','9878332212')
 
-                // if($this->mysqli->query($sql)){
+            // if($this->mysqli->query($sql)){
                 //     // if query run successfully
 
                 //     // we will push the result id
                 //     array_push($this->result,$this->mysqli->insert_id);
                 //     return true;
-                // }else{
+            // }else{
                 //     // if query fail
 
                 //     array_push($this->result,$this->mysqli->error);
                 //     return false;
-                // }
+            // }
             } else {
                 // if not exist
                 return false;
