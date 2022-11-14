@@ -13,7 +13,7 @@
         // connection variable
         private $mysqli = null;
 
-        // store error
+        // store error or query result
         private $result = array();
 
         public function __construct($host, $user, $password, $name)

@@ -1,20 +1,25 @@
 <?php
 
+    // class Student
+    // {
+    //     public $sid;
+    //     public $sname;
+    //     public $saddress;
+    //     public $sclass;
+    //     public $sphone;
+    // }
+
     class Database
     {
-        // create private variable to connect to db
         private $db_host;
         private $db_user;
         private $db_password;
         private $db_name;
 
         private $conn = false;
-
-        // connection variable
-        private $mysqli = null;
-
-        // store error
+        private $mysqli = '';
         private $result = array();
+
 
         public function __construct($host, $user, $password, $name)
         {
@@ -22,16 +27,11 @@
             $this->db_user = $user;
             $this->db_password = $password;
             $this->db_name = $name;
-            // create connection:
-            // first we will see doest database connection is already establish or not
             if (!$this->conn) {
                 $this->mysqli = new mysqli($this->db_host, $this->db_user, $this->db_password, $this->db_name);
 
                 if ($this->mysqli->connect_error) {
-                    // if error occur
                     echo "Database connection error";
-
-                    // storing error into '$this->result'
                     array_push($this->result, $this->mysqli->connect_error);
                     return false;
                 } else {
@@ -40,15 +40,47 @@
                     return true;
                 }
             } else {
-                // if we already had connection
                 echo "Database is connected already";
                 return true;
             }
         }
 
         // Function to insert into the database
-        public function insert()
+        public function insert(string $table, array $params = array())
         {
+            // we will take as parameter:
+            // 1. table name
+            // 2. value as array
+
+            // doest table exist that user send
+            if ($this->isTableExist($table)) {
+                // if exist then we will insert that into database
+
+                // first we will extract all the table column name from $params and convert into string
+                $table_columns = implode(',', array_keys($params));
+
+                // and then we will extract all the table column value from $params
+                $table_values = implode("','", $params);
+
+                $sql = "INSERT INTO $table ($table_columns) VALUES ('$table_values')";
+            // Ex: INSERT INTO students (sname,saddress,sclass,sphone) VALUE ('Thor','LA','1','9878332212')
+
+            // if($this->mysqli->query($sql)){
+                //     // if query run successfully
+
+                //     // we will push the result id
+                //     array_push($this->result,$this->mysqli->insert_id);
+                //     return true;
+            // }else{
+                //     // if query fail
+
+                //     array_push($this->result,$this->mysqli->error);
+                //     return false;
+            // }
+            } else {
+                // if not exist
+                return false;
+            }
         }
 
         // Function to update row into the database
@@ -66,15 +98,52 @@
         {
         }
 
+
+        // return all table name from the database
+        public function getTables()
+        {
+            $sql = "SHOW TABLES";
+            $response = $this->mysqli->query($sql);
+            $tables = array();
+            while ($table = $response->fetch_assoc()) {
+                array_push($tables, $table["Tables_in_$this->db_name"]);
+            }
+            return $tables;
+        }
+
+        private function isTableExist(string $table)
+        {
+            // this function will check does given table exist in database or not
+            $sql = "SHOW TABLES FROM $this->db_name LIKE '$table'";
+            $tableInDb = $this->mysqli->query($sql);
+            if ($tableInDb) {
+                if ($tableInDb->num_rows == 1) {
+                    // if it find out one table
+                    return true;
+                }
+            } else {
+                // so if give table did not exist the we will push the error into '$result'
+                array_push($this->result, $table." doesn't exist");
+                return false;
+            }
+        }
+
+        // Function to show $result
+        public function getResult(): array
+        {
+            $val = $this->result;
+
+            // empty the array
+            $this->result = array();
+            // then we will return the array
+            return $val;
+        }
+
         public function __destruct()
         {
-            // closing connection
             if ($this->conn) {
-                // connection is still established then we will close
                 if ($this->mysqli->close()) {
-                    // if we successfully close the connection then we will set '$conn' as false
                     $this->conn = false;
-                    // and we will also return true
                     return true;
                 } else {
                     return false;
