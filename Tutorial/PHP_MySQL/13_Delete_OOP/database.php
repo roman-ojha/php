@@ -56,35 +56,17 @@
         // Function to update row into the database
         public function update(string $table, object $params, string $where = null): bool
         {
-            // we will take as parameter:
-            // 1. table name to update
-            // 2. value as object to update
-            // 3. where clause (optional)
             $paramsArr = get_object_vars($params);
             if ($this->isTableExist($table)) {
-                // $table_columns = implode(',', array_keys($paramsArray));
-                // $table_values = implode("','", $paramsArray);
                 $args = array();
                 foreach ($paramsArr as $key => $value) {
                     $args[] = "$key = '$value'";
                 }
-                // EX:
-                // $args = Array ( [0] => sname = 'Superman' [1] => saddress = 'LA' [2] => sclass = '1' [3] => sphone = '9878332212' )
-
-                // now we will convert array into string
                 $sql = "UPDATE $table SET ".implode(' , ', $args);
-                // add where clause in $sql string
-                // first we have to check where clause exist or not
                 if ($where != null) {
-                    // if where clause then we will concat with previous $sql
                     $sql .= " WHERE $where";
                 }
-                // Ex: final $sql
-                // UPDATE students SET sname = 'Superman' , saddress = 'LA' , sclass = '1' , sphone = '9878332212' WHERE sname = 'Thor'
-
-                // now we will query
                 if ($this->mysqli->query($sql)) {
-                    // we will push affected rows that we updated in '$result'
                     array_push($this->result, $this->mysqli->affected_rows);
                     return true;
                 } else {
@@ -98,8 +80,30 @@
         }
 
         // Function to delete table or row(s) from database
-        public function delete()
+        public function delete(string $table, string $where = null): bool
         {
+            // we will take as parameter:
+            // 1. table name to update
+            // 2. where clause (optional)
+            if ($this->isTableExist($table)) {
+                $sql = "DELETE FROM $table";
+                // condition to add where clause
+                if ($where != null) {
+                    $sql .= " WHERE $where";
+                }
+                // $sql EX:
+                // DELETE FROM students WHERE sid = '3'
+                if ($this->mysqli->query($sql)) {
+                    array_push($this->result, $this->mysqli->affected_rows);
+                    return true;
+                } else {
+                    array_push($this->result, $this->mysqli->error);
+                    return false;
+                }
+                return true;
+            } else {
+                return false;
+            }
         }
 
         // function to read table from database
