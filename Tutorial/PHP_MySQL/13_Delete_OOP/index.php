@@ -23,5 +23,5 @@
     $table = 'students';
     $where = "sid = '18'";
     $db->delete($table, $where);
-    echo "</br>Update result is: ";
+    echo "</br>Delete result is: ";
     print_r($db->getResult());

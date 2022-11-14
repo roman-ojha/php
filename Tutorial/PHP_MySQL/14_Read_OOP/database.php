@@ -82,17 +82,11 @@
         // Function to delete table or row(s) from database
         public function delete(string $table, string $where = null): bool
         {
-            // we will take as parameter:
-            // 1. table name to update
-            // 2. where clause (optional)
             if ($this->isTableExist($table)) {
                 $sql = "DELETE FROM $table";
-                // condition to add where clause
                 if ($where != null) {
                     $sql .= " WHERE $where";
                 }
-                // $sql EX:
-                // DELETE FROM students WHERE sid = '3'
                 if ($this->mysqli->query($sql)) {
                     array_push($this->result, $this->mysqli->affected_rows);
                     return true;
@@ -107,8 +101,66 @@
         }
 
         // function to read table from database
-        public function select()
+        public function select(string $table, string $columns = '*', string $join = null, string $where = null, string $order = null, string $limit = null)
         {
+            // we will take as parameter:
+            // 1. $table :table name to update
+            // 2. $columns : specific column that you want to select
+            // 3. $join : join operation
+            // 4. $where : where clause
+            // 5. $order : order by
+            // 6. $limit : to add limit to select
+
+            if ($this->isTableExist($table)) {
+                // basic SQL
+                $sql = "SELECT $columns FROM $table";
+
+                // for join
+                if ($join != null) {
+                    // if join exist
+                    $sql .= " JOIN $join";
+                }
+                if ($where != null) {
+                    // if where exist
+                    $sql .= " WHERE $where";
+                }
+                if ($order != null) {
+                    // if order exist
+                    $sql .= " ORDER BY $order";
+                }
+                if ($limit != null) {
+                    // if join exist
+                    $sql .= " LIMIT 0, $limit";
+                }
+                echo $sql;
+                // $sql EX:
+                // SELECT * FROM students WHERE sid > 12 ORDER BY sid LIMIT 0, 2
+                $response = $this->mysqli->query($sql);
+                if ($response) {
+                    // if query run successfully then we will store the result in array
+                    array_push($this->result, $response->fetch_all(MYSQLI_ASSOC));
+                    return true;
+                } else {
+                    array_push($this->result, $this->mysqli->error);
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+
+        // function which takes sql string command to query
+        public function sql(string $sql)
+        {
+            $response = $this->mysqli->query($sql);
+            if ($response) {
+                // if query run successfully then we will store the result in array
+                array_push($this->result, $response->fetch_all(MYSQLI_ASSOC));
+                return true;
+            } else {
+                array_push($this->result, $this->mysqli->error);
+                return false;
+            }
         }
 
 

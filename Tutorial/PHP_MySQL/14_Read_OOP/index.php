@@ -23,5 +23,24 @@
     $table = 'students';
     $where = "sid = '18'";
     $db->delete($table, $where);
-    echo "</br>Update result is: ";
+    echo "</br>Delete result is: ";
     print_r($db->getResult());
+
+    // Read Data
+    // using SQL string
+    $db->sql('SELECT * FROM students WHERE sclass = 1');
+    echo "</br>SQL result is: <pre>";
+    print_r($db->getResult());
+    echo "</pre>";
+
+    // using select method
+    $table = 'students';
+    $columns = 'sid, sname';
+    $join = null;
+    $where = "sid > 12";
+    $order = "sname";
+    $limit = '2';
+    $db->select($table, $columns, $join, $where, $order, $limit);
+    echo "</br>Select result is: <pre>";
+    print_r($db->getResult());
+    echo "</pre>";
