@@ -35,7 +35,6 @@
         }
         #container{
             width: 50%;
-            border: 1px solid blue;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -44,7 +43,6 @@
         #header{
             background-color: yellow;
             width: 100%;
-            border: 1px solid red;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -57,6 +55,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+        table{
+            margin-top: 1rem;
         }
         input{
             padding: 1rem;
@@ -80,22 +81,25 @@
             <h1>PHP with Ajax</h1>
         </div>
         <div id="load-data-container">
-            <form>
-                <input type="submit" value="Load Data"/>
-            </form>
+            <input type="submit" value="Load Data" id="load-data"/>
         </div>
-        <div>
-            <table border="1px">
-                <tr>
-                    <th class="id">Id</th>
-                    <th class="name">Name</th>
-                </tr>
-                <tr>
-                    <td class="id">1</td>
-                    <td class="name">Roman</td>
-                </tr>
-            </table>
+        <div id="table-container">
         </div>
     </div>
+    <script type="text/javascript">
+        const loadDataBtn = document.getElementById('load-data');
+        loadDataBtn.addEventListener('click',async(e)=>{
+            e.preventDefault();
+
+            const response = await fetch("./ajax-load.php",{
+                method:"POST",
+            })
+
+            // now here we will get the html text as response
+            const htmlText = await response.text()
+            // now we will append the html code into table container
+            document.getElementById('table-container').innerHTML = htmlText;
+        })
+    </script>
 </body>
 </html>
