@@ -1,5 +1,7 @@
 <?php
 
+    include './student.php';
+
     class Database
     {
         private $db_host;
@@ -37,7 +39,7 @@
         }
 
         // Function to insert into the database
-        public function insert(string $table, array $params = array())
+        public function insert(string $table, Student $params)
         {
             // we will take as parameter:
             // 1. table name
@@ -48,26 +50,26 @@
                 // if exist then we will insert that into database
 
                 // first we will extract all the table column name from $params and convert into string
-                $table_columns = implode(',', array_keys($params));
+                // $table_columns = implode(',', array_keys($params));
 
                 // and then we will extract all the table column value from $params
-                $table_values = implode("','", $params);
+                // $table_values = implode("','", $params);
 
-                $sql = "INSERT INTO $table ($table_columns) VALUES ('$table_values')";
-            // Ex: INSERT INTO students (sname,saddress,sclass,sphone) VALUE ('Thor','LA','1','9878332212')
+                // $sql = "INSERT INTO $table ($table_columns) VALUES ('$table_values')";
+                // Ex: INSERT INTO students (sname,saddress,sclass,sphone) VALUE ('Thor','LA','1','9878332212')
 
-            // if($this->mysqli->query($sql)){
+                // if($this->mysqli->query($sql)){
                 //     // if query run successfully
 
                 //     // we will push the result id
                 //     array_push($this->result,$this->mysqli->insert_id);
                 //     return true;
-            // }else{
+                // }else{
                 //     // if query fail
 
                 //     array_push($this->result,$this->mysqli->error);
                 //     return false;
-            // }
+                // }
             } else {
                 // if not exist
                 return false;
@@ -89,6 +91,18 @@
         {
         }
 
+
+        // return all table name from the database
+        public function getTables()
+        {
+            $sql = "SHOW TABLES";
+            $response = $this->mysqli->query($sql);
+            $tables = array();
+            while ($table = $response->fetch_assoc()) {
+                array_push($tables, $table["Tables_in_$this->db_name"]);
+            }
+            return $tables;
+        }
 
         private function isTableExist(string $table)
         {
