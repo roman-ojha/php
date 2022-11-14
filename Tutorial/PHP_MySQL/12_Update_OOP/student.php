@@ -3,10 +3,10 @@
     class Student
     {
         // public $sid;
-        public $sname;
-        public $saddress;
-        public $sclass;
-        public $sphone;
+        public string $sname;
+        public string $saddress;
+        public int $sclass;
+        public int $sphone;
 
         public function __construct($name, $address, $class, $phone)
         {
