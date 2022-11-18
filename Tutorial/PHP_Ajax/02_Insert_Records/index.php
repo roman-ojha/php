@@ -72,21 +72,22 @@
         <div id="header">
             <h1>PHP with Ajax</h1>
         </div>
-        <div id="form-container">
+        <form id="form-container">
             <label>Name:</label>
             <input type="text" name="sname" id="sname" placeholder="Name"/>
             <input id="save-data" type="submit" value="Save"/>
-        </div>
+        </form>
+        <p id="msg"></p>
         <div id="table-container">
         </div>
     </div>
     <script type="text/javascript">
-        const loadDataBtn = document.getElementById('save-data');
+        const formElm = document.getElementById('form-container');
         
         // function to load table
         async function loadTable(){
             const response = await fetch("./ajax-load.php",{
-                method:"POST",
+                method:"GET",
             })
             // now here we will get the html text as response
             const htmlText = await response.text()
@@ -97,10 +98,16 @@
         loadTable();
 
         // Saving data on click
-        loadDataBtn.addEventListener('click',async(e)=>{
+        formElm.addEventListener('submit',async(e)=>{
             e.preventDefault();
 
             const name = document.getElementById('sname').value;
+            if(name == ''){
+                document.getElementById('msg').innerText = 'name field is required';
+                document.getElementById('msg').style = 'color: red;';
+                return;
+            }
+
             const response = await fetch("./ajax-insert.php",{
                 method:"POST",
                 header:{
@@ -109,10 +116,18 @@
                 body:JSON.stringify({sname:name})
             })
 
-            // reloading table after insert
-            if(response.status === 200){
+            const data = await response.json();
+            if(data['success'] === 'true'){
                 loadTable();
+                document.getElementById('sname').value = '';
+                document.getElementById('msg').innerText = `inserted name ${name}`;
+                document.getElementById('msg').style = 'color: green;';
             }
+            else{
+                document.getElementById('msg').innerText = `Some Error occur while inserting`;
+                document.getElementById('msg').style = 'color: red;';
+            }
+
         })
     </script>
 </body>

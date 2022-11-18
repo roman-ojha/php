@@ -15,6 +15,7 @@
                         // response data
                     }
                 })
+            -> But because I don't want to use JQuery I will going to use javascript fetch api
     */
 
     ?>
