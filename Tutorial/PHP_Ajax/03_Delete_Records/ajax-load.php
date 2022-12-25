@@ -1,9 +1,7 @@
 <?php
 
-    // first we will create database connection
     $conn = mysqli_connect('localhost', 'root', '', 'php_mysql_tutorial') or die('connection failed');
 
-    // query
     $sql = "SELECT * FROM students";
     $response = mysqli_query($conn, $sql);
 
@@ -21,6 +19,7 @@
         <tr>
             <th class="id">Id</th>
             <th class="name">Name</th>
+            <th class="delete">Delete</th>
         </tr>
         <?php
         if (mysqli_num_rows($response) > 0) {
@@ -29,6 +28,9 @@
             <tr>
                 <td class='id'><?php echo $student['sid'] ?></td>
                 <td class='name'><?php echo $student['sname'] ?></td>
+                <td>
+                    <button class="delete-btn" data-id='<?php echo $student['sid']?>'>Delete</button>
+                </td>
             </tr>
         <?php
             }
@@ -38,7 +40,6 @@
         } else {
             echo "<h2>No record found</h2>";
         }
-    // closing connection
     mysqli_close($conn);
     ?>
 </body>

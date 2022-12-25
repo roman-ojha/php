@@ -64,6 +64,13 @@
         .name{
             padding: 1rem 10rem 1rem 10rem;
         }
+        .delete-btn{
+            padding: 10px;
+            background-color: darkorange;
+            border-radius: 10px;
+            border-width: 0px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -81,6 +88,7 @@
         <div id="table-container">
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
     <script type="text/javascript">
         const formElm = document.getElementById('form-container');
         
@@ -128,6 +136,50 @@
                 document.getElementById('msg').style = 'color: red;';
             }
 
+        })
+
+
+        
+        // using Jquery as well
+        $(document).ready(function(){
+            // Logic for Delete Item
+
+            // Because '.delete-but' element had been dynamically loaded we have to on method on that button class
+            $(document).on("click",'.delete-btn',function(){
+                if(confirm("Do you want to delete this record?")){
+
+                    // getting 'sid'
+                    var studentId = $(this).data("id");
+                    console.log(studentId);
+
+                    // the element that we clicked
+                    var element = $(this);
+
+                    $.ajax({
+                        url:"./ajax-delete.php",
+                        type:"POST",
+                        data:{
+                            id:studentId
+                        },
+                        success:function(data){
+                            if(parseInt(data) == 1){
+                                // Successfully deleted
+                                // Hiding the element that we delete
+
+                                // closest is parent
+                                $(element).closest('tr').fadeOut();
+
+                                // Showing message after delete
+                                $("#msg").html(`Deleted Record`);
+                                $("#msg").css('color','green');
+                            }
+                            else{
+
+                            }
+                        }
+                    });
+                }
+            });
         })
     </script>
 </body>
