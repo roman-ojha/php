@@ -9,3 +9,22 @@ echo "<br/>" . $user["name"] . " " . $user["id"] . " " . $user["gender"];
 // constant
 define("number", 10, false);
 echo number;
+
+// foreach
+$names = array("roman", "razz", "harry");
+echo "<br/>";
+foreach ($names as $name) {
+    echo $name . "<br/>";
+}
+
+// pass by reference
+function increment(&$num)
+{
+    $num++;
+}
+$num = 10;
+echo $num . "<br/>";
+increment($num);
+echo $num . "<br/>";
+increment($num);
+echo $num . "<br/>";
