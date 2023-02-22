@@ -17,10 +17,13 @@ if (isset($_POST['register'])) {
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 // validate gender
                 if ($gender == "male" || $gender == "female") {
-                    echo "valid gender";
                     // validate city
                     if (strlen($city) > 0) {
-                        echo "valid city";
+                        // Save data
+                        $db = new Database();
+                        $db->conn->query("
+                        INSERT INTO User(name,email,gender,ph_no,city) 
+                        VALUES ('{$name}','{$email}','{$gender}',{$number},'{$city}');");
                     } else {
                         echo "Not a valid city...<br/>";
                     }
