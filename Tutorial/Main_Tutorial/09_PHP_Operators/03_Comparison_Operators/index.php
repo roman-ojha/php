@@ -14,6 +14,8 @@
             9) Less than or equal to => '<='
             10) Spaceship => '<=>'
                 -> it returns -1,0 or 1 respectively less than, equal to, or greater than
+            11) Inqeuality => '<>'
+                -> $x <> $y (return true if $x is not equal to $y)
     */
 
    $a=50;
@@ -48,4 +50,3 @@
 
    $c=$a <=> $b;
    echo $c,"<br/>";
-?>
