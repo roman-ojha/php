@@ -64,4 +64,28 @@ function validateUser() {
       console.log("password is not valid");
     }
   }
+
+  var emailPattern = /^[\w\-\.\+]+\@[a-zA-Z\.\-]+\.[a-zA-Z0-9]{2,4}$/;
+
+  var city =
+    document.getElementById("city").options[
+      document.getElementById("city").selectedIndex
+    ].value;
+  console.log(city);
+
+  var gender = document.getElementsByName("gender");
+  if (gender[0].checked) {
+    console.log(gender[0].value);
+  } else if (gender[1].checked) {
+    console.log(gender[1].value);
+  } else {
+    console.log("gender is not selected");
+  }
+
+  var vehicles = document.getElementsByName("vehicle");
+  vehicles.forEach((vehicle, key) => {
+    if (vehicle.checked) {
+      console.log("Vehicle: ", vehicle.value);
+    }
+  });
 }

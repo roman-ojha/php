@@ -22,8 +22,29 @@
         <fieldset>
             <input type="text" id="username" name="username" />
             <br />
+            <input type="email" novalidate id="email" name="email" />
+            <br />
             <input type="password" id="password" name="password" />
             <br />
+            <select name="city" id="city">
+                <option value="null" default>Select City</option>
+                <option value="kathmandu">Kathmandu</option>
+                <option value="lalitpur">Lalitpur</option>
+            </select>
+            <div>
+                <label for="male">Male</label>
+                <input type="radio" name="gender" id="male" value="male" />
+                <label for="female">Female</label>
+                <input type="radio" name="gender" id="female" value="female" />
+            </div>
+            <div>
+                <label for="car">Car</label>
+                <input type="checkbox" name="vehicle" id="car" value="car" />
+                <label for="bus">Bus</label>
+                <input type="checkbox" name="vehicle" id="bus" value="bus" />
+                <label for="truck">Truck</label>
+                <input type="checkbox" name="vehicle" id="truck" value="truck" />
+            </div>
             <input type="button" onclick="validateUser()" value="Validate">
         </fieldset>
     </form>
