@@ -1,0 +1,39 @@
+{
+    "destination":[
+       {
+          "id":"1",
+          "destinationList":[
+             "Illam",
+             "Pathivara",
+             "Dharan",
+             "Vedetaar"
+          ]
+       },
+       {
+          "id":"2",
+          "destinationList":[
+             "Janaki Temple",
+             "Maha Gadhimai",
+             "Vata Mandir"
+          ]
+       },
+       {
+          "id":"3",
+          "destinationList":[
+             "Sauraha",
+             "Basantapur",
+             "Bhaktapur Durbar Square",
+             "Lalitpur Durbar Square"
+          ]
+       },
+       {
+          "id":"4",
+          "destinationList":[
+             "Fewa Lake",
+             "Begnas Lake",
+             "Peacae Stupa",
+             "Mahendra Cave"
+          ]
+       }
+    ]
+ }
