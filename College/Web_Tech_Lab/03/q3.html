@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Media Query Example</title>
+    <style>
+      #container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: antiquewhite;
+      }
+      * {
+        padding: 0px;
+        margin: 0px;
+      }
+      .item {
+        display: inline-block;
+        padding: 100px;
+        box-sizing: border-box;
+        font-size: 30px;
+        width: 100%;
+      }
+      #item-1 {
+        background-color: lightcoral;
+      }
+      #item-2 {
+        background-color: limegreen;
+      }
+      #item-3 {
+        background-color: lightseagreen;
+      }
+      @media screen and (max-width: 500px) {
+        #container {
+          display: flex;
+          justify-content: space-between;
+          flex-direction: column;
+          align-items: center;
+          background-color: antiquewhite;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="item-1" class="item">Item 1</div>
+      <div id="item-2" class="item">Item 2</div>
+      <div id="item-3" class="item">Item 3</div>
+    </div>
+  </body>
+</html>

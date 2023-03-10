@@ -1,0 +1,62 @@
+header {
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 25%;
+  position: fixed;
+  background-color: lightskyblue;
+}
+footer {
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 12%;
+  position: fixed;
+  background-color: purple;
+}
+ol {
+  list-style-type: square;
+}
+nav {
+  margin-top: 157px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 40px;
+  position: fixed;
+  background-color: blue;
+}
+table {
+  position: absolute;
+  right: 50%;
+  top: 300px;
+  border: 1px solid red;
+}
+table tr {
+  color: blue;
+  border-collapse: collapse;
+}
+.navclass a {
+  color: white;
+}
+.navclass {
+  font-size: 30px;
+  text-align: center;
+}
+section {
+  font-size: 20px;
+  color: black;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-top: 200px;
+}
+.footer1 {
+  color: white;
+  font-size: 20px;
+}
+#footid1 {
+  height: 100%;
+  margin-top: 15px;
+  text-align: center;
+}
